@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 function Button(props) {
     return (
-    <button
+    <Link
         className="Button"
-        onClick={props.handleClick}>{props.action}
-    </button>
+        to={props.route}>{props.action}
+    </Link>
     );
 }
 

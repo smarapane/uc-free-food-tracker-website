@@ -1,16 +1,18 @@
-import Header from './components/Header.js';
-import Button from './components/Button.js';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Navigation, Home, CreatePost, ViewPost, DeletePost } from "./components";
 
 function App() {
   return (
     <div class="App">
-      <head>
-        <title>UC Free Food Tracker</title>
-      </head>
-      <Header/>
-      <Button action="Create post" color="secondary"/>
-      <Button action="View posts"/>
-      <Button action="Delete post"/>
+      <Router>
+      <Navigation/>
+      <Switch>
+        <Route path="/" exact component={() => <Home />} />
+        <Route path="/CreatePost" exact component={() => <CreatePost />} />
+        <Route path="/ViewPost" exact component={() => <ViewPost />} />
+        <Route path="/DeletePost" exact component={() => <DeletePost />} />
+      </Switch>
+      </Router>
     </div>
   );
 }
