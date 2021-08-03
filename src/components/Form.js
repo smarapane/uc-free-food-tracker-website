@@ -7,7 +7,6 @@ class Form extends React.Component {
     this.state = { Event:'',Description:'', Latitude:'', Longitude:''}
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   handleChange(event) {
