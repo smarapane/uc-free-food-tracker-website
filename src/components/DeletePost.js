@@ -1,4 +1,3 @@
-import Header from './Header.js';
 import ButtonLink from './ButtonLink.js';
 
 function DeletePost() {

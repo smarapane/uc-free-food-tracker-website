@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from './Button'
-import { useHistory } from "react-router-dom";
 
 class Form extends React.Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class Form extends React.Component {
     this.setState({[event.target.name] : event.target.value});
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     const { Event, Description, Latitude, Longitude } = this.state
     event.preventDefault();
     if (Latitude.length == 0 || Longitude.length == 0 || isNaN(Latitude) || isNaN(Longitude)) {
@@ -23,18 +22,16 @@ class Form extends React.Component {
     }
     else {
       // Hit API here
-      this.createPost();
+      await this.createPost(Event, Latitude, Longitude, Description);
     }
-    alert();
-    console.log("api")
   }
 
-  createPost(Event, Latitude, Longitude, Description) {
-    fetch("localhost:8080/api/locations", {
+  async createPost(Event, Latitude, Longitude, Description) {
+    fetch("YOURURL/api/locations", {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         foodName: Event,
@@ -46,12 +43,12 @@ class Form extends React.Component {
     .then((response) => {
       return response.json()
     })
-    .then((result) => {
+    .then((data) => {
       // Work with JSON data here
-      console.log(result)
+      console.log(data);
     })
     .catch((err) => {
-      // Do something for an error here
+      console.log(err)
     })
 }
 

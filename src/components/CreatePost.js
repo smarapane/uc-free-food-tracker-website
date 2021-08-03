@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from './Form';
-import Button from './Button';
 import '../App.css';
 
 class CreatePost extends React.Component{
