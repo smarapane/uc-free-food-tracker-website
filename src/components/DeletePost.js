@@ -1,10 +1,10 @@
 import Header from './Header.js';
-import Button from './Button.js';
+import ButtonLink from './ButtonLink.js';
 
 function DeletePost() {
   return (
     <div class="DeletePost">
-      <Button action="Delete post"/>
+      <ButtonLink action="Delete post"/>
     </div>
   );
 }

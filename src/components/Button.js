@@ -1,14 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../App.css';
-
-function Button(props) {
-    return (
-    <Link
-        className="Button"
-        to={props.route}>{props.action}
-    </Link>
-    );
+function Button() {
+  return (
+    <button className="Submit">
+        Submit
+    </button>  );
 }
 
-export default Button
+export default Button;

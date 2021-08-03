@@ -1,5 +1,5 @@
 import Header from './Header.js';
-import Button from './Button.js';
+import ButtonLink from './ButtonLink.js';
 
 function Navigation() {
   return (
@@ -8,9 +8,9 @@ function Navigation() {
         <title>UC Free Food Tracker</title>
       </head>
       <Header/>
-      <Button action="Create post" route="/CreatePost"/>
-      <Button action="View posts" route="/ViewPost"/>
-      <Button action="Delete post" route="DeletePost"/>
+      <ButtonLink action="Delete post" route="/DeletePost"/>
+      <ButtonLink action="View posts" route="/ViewPost"/>
+      <ButtonLink action="Create post" route="/CreatePost"/>
     </div>
   );
 }

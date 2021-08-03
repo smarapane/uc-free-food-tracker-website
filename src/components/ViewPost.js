@@ -1,5 +1,5 @@
 import Header from './Header.js';
-import Button from './Button.js';
+import ButtonLink from './ButtonLink';
 
 function ViewPost() {
   return (
@@ -7,7 +7,7 @@ function ViewPost() {
       <head>
         <title>UC Free Food Tracker</title>
       </head>
-      <Button action="View posts"/>
+      <ButtonLink action="View posts"/>
     </div>
   );
 }

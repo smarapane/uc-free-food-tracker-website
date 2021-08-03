@@ -1,12 +1,28 @@
-import Header from './Header.js';
-import Button from './Button.js';
+import React from 'react';
+import Form from './Form';
+import Button from './Button';
+import '../App.css';
 
-function CreatePost() {
-  return (
-    <div class="CreatePost">
-      <Button action="Create post" color="secondary"/>
-    </div>
-  );
+class CreatePost extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          value:""};
+    }
+
+    render() {
+        return (
+            <div>
+                <div className="Questions">
+                    <Form/>
+                </div>
+            </div>
+        );
+    }
+
+    submitResponse() {
+
+    }
 }
 
-export default CreatePost;
+export default CreatePost
