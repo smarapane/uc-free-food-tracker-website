@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from './Button'
+import { Redirect } from 'react-router';
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { Event:'',Description:'', Latitude:'', Longitude:''}
+    this.state = { Event:'',Description:'', Latitude:'', Longitude:'', redirect: false}
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -16,12 +16,13 @@ class Form extends React.Component {
   async handleSubmit(event) {
     const { Event, Description, Latitude, Longitude } = this.state
     event.preventDefault();
-    if (Latitude.length == 0 || Longitude.length == 0 || isNaN(Latitude) || isNaN(Longitude)) {
+    if (Latitude.length === 0 || Longitude.length === 0 || isNaN(Latitude) || isNaN(Longitude)) {
       alert("Invalid response");
     }
     else {
       // Hit API here
       await this.createPost(Event, Latitude, Longitude, Description);
+      alert("Submitted!");
     }
   }
 
@@ -40,11 +41,11 @@ class Form extends React.Component {
       })
     })
     .then((response) => {
-      return response.json()
+      this.setState({ redirect: true});
+      return response.json();
     })
     .then((data) => {
-      // Work with JSON data here
-      console.log(data);
+      console.log(data)
     })
     .catch((err) => {
       console.log(err)
@@ -56,11 +57,17 @@ class Form extends React.Component {
   }
 
   render(){
+    const { redirect } = this.state.redirect;
+
+    if(redirect) {
+      return <Redirect to='/'/>
+    }
+
     return(
       <form onSubmit={this.handleSubmit}>
         <div>
-          <label htmlFor='Event'>Enter Title of Event: </label>
-          <input 
+          <label htmlFor='Event'>Enter Title of Event:  </label>
+          <input className="EventInput"
             name='Event'
             placeholder='e.g. Canes at TUC' 
             value = {this.state.email}
@@ -69,7 +76,7 @@ class Form extends React.Component {
         </div>
         <div>
           <label htmlFor='Description'>Enter Description of Event: </label>
-          <input
+          <input className="DescriptionInput"
             name='Description' 
             placeholder='e.g. Student Government handing out chicken and fries'
             value={this.state.name}
@@ -78,7 +85,7 @@ class Form extends React.Component {
         </div>
         <div>
           <label htmlFor='Latitude'>Enter Latitude of Event: </label>
-          <input
+          <input className="LatitudeInput"
             name='Latitude' 
             placeholder='e.g. 39.1329'
             value={this.state.age}
@@ -87,7 +94,7 @@ class Form extends React.Component {
         </div>
         <div>
           <label htmlFor='Longitude'>Enter Longitude of Event: </label>
-          <input
+          <input className="LongitudeInput"
             name='Longitude' 
             placeholder='e.g. 84.5150'
             value={this.state.address}
@@ -95,7 +102,9 @@ class Form extends React.Component {
           />
         </div>
         <div>
-          <Button/>
+          <button className="Submit">
+            Submit
+          </button>
         </div>
       </form>
     )

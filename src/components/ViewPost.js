@@ -1,8 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTable } from 'react-table'
-
-import makeData from './makeData'
-
 
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
@@ -19,7 +16,7 @@ function Table({ columns, data }) {
 
   // Render the UI for your table
   return (
-    <table {...getTableProps()}>
+    <table className="Table"{...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
@@ -46,51 +43,65 @@ function Table({ columns, data }) {
 }
 
 function ViewPost() {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Name',
-        columns: [
-          {
-            Header: 'First Name',
-            accessor: 'firstName',
-          },
-          {
-            Header: 'Last Name',
-            accessor: 'lastName',
-          },
-        ],
-      },
-      {
-        Header: 'Info',
-        columns: [
-          {
-            Header: 'Age',
-            accessor: 'age',
-          },
-          {
-            Header: 'Visits',
-            accessor: 'visits',
-          },
-          {
-            Header: 'Status',
-            accessor: 'status',
-          },
-          {
-            Header: 'Profile Progress',
-            accessor: 'progress',
-          },
-        ],
-      },
-    ],
-    []
-  )
+  const [loadingData, setLoadingData] = useState(true);
 
-  const data = React.useMemo(() => makeData(20), [])
+  const columns = React.useMemo(
+  () => [
+    {
+      Header: ' ',
+      columns: [
+        {
+          Header: 'Event Name',
+          accessor: 'foodName',
+        },
+        {
+          Header: 'Event Description',
+          accessor: 'description',
+        },
+        {
+          Header: 'Latitude',
+          accessor: 'latitude',
+        },
+        {
+          Header: 'Longitude',
+          accessor: 'longitude',
+        },
+
+      ],
+    },
+  ],
+  []
+)
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      fetch("YOURURL/api/locations", {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response => response.json()))
+      .then((data => setData(data.data)))
+      .then((setLoadingData(false)));
+    }
+
+    if (loadingData) {
+      getData();
+    }
+  }, []);
 
   return (
     <div>
-      <Table columns={columns} data={data} />
+      {loadingData ? (
+        <p>Loading Please wait...</p>
+      ) : (
+        <div>
+          <p>{console.log(data)}</p>
+          <Table columns={columns} data={data}/>
+        </div>
+      )}
     </div>
   )
 }

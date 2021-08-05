@@ -33,21 +33,69 @@ body {
   position: relative;
   left: 25%;
   width: 50%;
-  top: 110px;
+  top: 75px;
   padding: 20px;
   border: 3px solid black;
 }
 
+.EventInput {
+  width: 300px;
+}
+
+.DescriptionInput {
+  width: 249px;
+  height: 50px;
+}
+
+.LatitudeInput {
+  Width: 273px;
+}
+
+.LongitudeInput {
+  Width: 259px;
+}
+
+
+
 .Submit {
   color: white;
   position: absolute;
-  right: 25%;
-  top: 50%;
+  right: 5%;
+  top: 56%;
   background-color: #000000;
   font-size: 18px;
-  width: 5%;
   padding: 10px 80.75px;
   border-radius: 50px;
   cursor: pointer;
-  
+}
+
+.SubmitText{
+  position: relative;
+  left: 25%;
+}
+
+.Table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  position: relative;
+  left: 12.5%;
+  top: 19px;
+  width: 75%;
+}
+
+.Table td, .Table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.Table tr:nth-child(even){background-color: #f2f2f2;}
+
+.Table tr:hover {background-color: #ddd;}
+
+.Table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #000000;
+  color: white;
 }
